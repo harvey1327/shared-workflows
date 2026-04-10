@@ -19,18 +19,9 @@ jobs:
       - name: generate-workflow
         id: generate
         run: |
-          cat <<'EOF' > ./.github/workflows/dynamic-workflow.yml
-          name: dynamic-workflow
-
-          on:
-            workflow_call:
-
-          jobs:
-            run:
-              runs-on: ubuntu-latest
-              steps:
-                - name: run
-                  run: echo "Running dynamic workflow"
+          cat <<'EOF' >> ./.github/workflows/dynamic-workflow.yml
+                - name: hello-world
+                  run: echo "Hello World"
           EOF
 
   dw:

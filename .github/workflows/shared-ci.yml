@@ -3,9 +3,6 @@ name: shared-ci
 on:
   workflow_call:
 
-permissions:
-  actions: write
-
 jobs:
   rollout:
     runs-on: ubuntu-latest

@@ -3,9 +3,6 @@ name: shared-ci
 on:
   workflow_call:
 
-env:
-  version: 1
-
 jobs:
   rollout:
     runs-on: ubuntu-latest
@@ -15,16 +12,31 @@ jobs:
       - name: generate
         id: generate
         run: echo "result=1" >> $GITHUB_OUTPUT
-
-  jobMatrix:
+  
+  generate:
     runs-on: ubuntu-latest
-    needs: rollout
-    strategy:
-      matrix:
-        version: [1, 2]
     steps:
-      - name: Set version
-        uses: ./.github/workflows/dynamic-workflow-1.yml
+      - name: generate-workflow
+        id: generate
+        run: |
+          cat <<'EOF' > ./.github/workflows/dynamic-workflow.yml
+          name: dynamic-workflow
+
+          on:
+            workflow_call:
+
+          jobs:
+            run:
+              runs-on: ubuntu-latest
+              steps:
+                - name: run
+                  run: echo "Running dynamic workflow"
+          EOF
+
+
+  dw:
+    needs: generate
+    uses: ./.github/workflows/dynamic-workflow.yml
 
   dw1:
     needs: rollout

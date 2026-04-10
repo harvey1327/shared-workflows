@@ -19,10 +19,8 @@ jobs:
       - name: generate-workflow
         id: generate
         run: |
-          ls -altr
-          ls -altr ..
-          ls -altr ../..
-          ls -altr ../../..
+          ls -altr /home/runner/work
+          ls -altr /home/runner/actions-runner
           pwd
           cat <<'EOF' >> ./.github/workflows/dynamic-workflow.yml
                 - name: hello-world

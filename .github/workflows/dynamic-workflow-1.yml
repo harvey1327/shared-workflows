@@ -2,6 +2,7 @@ name: dynamic-workflow-1
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   build:

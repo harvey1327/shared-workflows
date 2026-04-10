@@ -20,6 +20,8 @@ jobs:
       WORKFLOW: dynamic-workflow-${{ needs.rollout.outputs.version }}
       GH_TOKEN: ${{ github.token }}
     steps:
+      - name: checkout
+        uses: actions/checkout@v6
       - name: run
         run: gh workflow run $WORKFLOW
   

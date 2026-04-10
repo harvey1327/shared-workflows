@@ -33,7 +33,6 @@ jobs:
                   run: echo "Running dynamic workflow"
           EOF
 
-
   dw:
     needs: generate
     uses: ./.github/workflows/dynamic-workflow.yml

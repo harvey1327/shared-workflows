@@ -1,0 +1,16 @@
+name: dynamic-workflow-1
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log
+        run: echo "dynamic-workflow-1"
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Run build script
+        run: ./build.sh

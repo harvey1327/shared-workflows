@@ -18,6 +18,7 @@ jobs:
     needs: rollout
     env:
       WORKFLOW: dynamic-workflow-${{ needs.rollout.outputs.version }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: run
         run: gh workflow run $WORKFLOW

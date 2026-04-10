@@ -16,7 +16,7 @@ jobs:
   dw1:
     needs: rollout
     if: ${{ needs.rollout.outputs.version == 1 }}
-    uses: ./.github/workflows/dynamic-workflow-1.yml
+    uses: ./.github/workflows/dynamic-workflow-${{ needs.rollout.outputs.version}}.yml
   
   dw2:
     needs: rollout

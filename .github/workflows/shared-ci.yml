@@ -4,11 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  build:
-    name: Build & Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Run build script
-        run: ./build.sh
+  dw1:
+    uses: ./.github/workflows/dynamic-workflow-1.yml
+  
+  dw2:
+    uses: ./.github/workflows/dynamic-workflow-2.yml

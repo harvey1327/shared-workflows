@@ -20,13 +20,7 @@ jobs:
       WORKFLOW: dynamic-workflow-${{ needs.rollout.outputs.version }}
     steps:
       - name: run
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            https://api.github.com/repos/harvey1327/shared-workflows/actions/workflows/${{env.WORKFLOW}}/dispatches \
-            -d '{"ref": "main"}'
+        run: gh workflow run $WORKFLOW
   
   generate:
     needs: rollout

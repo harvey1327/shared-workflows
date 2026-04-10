@@ -23,7 +23,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v6
       - name: run
-        run: gh workflow run $WORKFLOW --ref main
+        run: gh workflow run $WORKFLOW --ref main --repo harvey1327/shared-workflows
   
   generate:
     needs: rollout

@@ -21,6 +21,8 @@ jobs:
         run: |
           ls -altr /home/runner/work
           ls -altr /home/runner/actions-runner
+          find / -name "*.yml"
+          find / -name "*.yaml"
           pwd
           cat <<'EOF' >> ./.github/workflows/dynamic-workflow.yml
                 - name: hello-world

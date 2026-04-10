@@ -4,8 +4,21 @@ on:
   workflow_call:
 
 jobs:
+  rollout:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.generate.outputs.result }}
+    steps:
+      - name: generate
+        id: generate
+        run: echo "result=1" >> $GITHUB_OUTPUT
+
   dw1:
+    needs: rollout
+    if: ${{ needs.rollout.outputs.version == 1 }}
     uses: ./.github/workflows/dynamic-workflow-1.yml
   
   dw2:
+    needs: rollout
+    if: ${{ needs.rollout.outputs.version == 2 }}
     uses: ./.github/workflows/dynamic-workflow-2.yml

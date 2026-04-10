@@ -3,6 +3,9 @@ name: shared-ci
 on:
   workflow_call:
 
+permissions:
+  actions: write
+
 jobs:
   rollout:
     runs-on: ubuntu-latest
@@ -52,9 +55,13 @@ jobs:
   dw1:
     needs: rollout
     if: ${{ needs.rollout.outputs.version == 1 }}
-    uses: ./.github/workflows/dynamic-workflow-1.yml
+    uses: harvey1327/shared-workflows/.github/workflows/dynamic-workflow-1.yml@main
   
   dw2:
     needs: rollout
     if: ${{ needs.rollout.outputs.version == 2 }}
-    uses: ./.github/workflows/dynamic-workflow-2.yml
+    uses: harvey1327/shared-workflows/.github/workflows/dynamic-workflow-1.yml@main
+
+  # dwv:
+  #   needs: rollout
+  #   uses: harvey1327/shared-workflows/.github/workflows/dynamic-workflow-${{ needs.rollout.outputs.version }}.yml@main
